@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+  function kiemTraSoHoanHao(n) {
+    if (n <= 1) {
+      return false;
+    }
+    let tongUoc = 0;
+    for (let i = 1; i <= n / 2; i++) {
+      if (n % i === 0) {
+        tongUoc += i;
+      }
+    }
+    return tongUoc === n;
+  }
+  let so = 6;
+  document.write(`${so} là số hoàn hảo: ${kiemTraSoHoanHao(so)}<br>`);  // Output: true
+
+  so = 28;
+  document.write(`${so} là số hoàn hảo: ${kiemTraSoHoanHao(so)}<br>`);  // Output: true
+
+  so = 12;
+  document.write(`${so} là số hoàn hảo: ${kiemTraSoHoanHao(so)}<br>`);  // Output: false
+
+</script>
+</body>
+</html>

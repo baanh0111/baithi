@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Kiểm tra số ngày trong tháng</h1>
+<label for="dateInput">Nhập tháng/năm (MM/yyyy):</label>
+<input type="text" id="dateInput" placeholder="VD: 02/2024">
+<button onclick="kiemTraNgayThangNhapVao()">Kiểm tra</button>
+
+<div id="result"></div>
+<script>
+  function kiemTraNamNhuan(nam) {
+    return (nam % 4 === 0 && nam % 100 !== 0) || (nam % 400 === 0);
+  }
+
+  function soNgayTrongThang(thang, nam) {
+    if (thang < 1 || thang > 12) {
+      return "Tháng không hợp lệ!";
+    }
+
+    switch (thang) {
+      case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+        return 31;
+      case 4: case 6: case 9: case 11:
+        return 30;
+      case 2:
+        return kiemTraNamNhuan(nam) ? 29 : 28; 
+      default:
+        return "Tháng không hợp lệ!";
+    }
+  }
+
+  function kiemTraNgayThangNhapVao() {
+    const mm_yyyy = document.getElementById("dateInput").value;
+
+    const regex = /^(0[1-9]|1[0-2])\/\d{4}$/;
+
+    if (!regex.test(mm_yyyy)) {
+      document.getElementById("result").innerHTML = "Định dạng tháng/năm không hợp lệ. Vui lòng nhập theo MM/yyyy.";
+      return;
+    }
+
+    let [thang, nam] = mm_yyyy.split("/");
+    thang = parseInt(thang);
+    nam = parseInt(nam);
+
+    const soNgay = soNgayTrongThang(thang, nam);
+    let namNhuanMessage = kiemTraNamNhuan(nam) ? "Năm " + nam + " là năm nhuận." : "Năm " + nam + " không phải là năm nhuận.";
+    document.getElementById("result").innerHTML = `Tháng ${thang}/${nam} có ${soNgay} ngày.<br>${namNhuanMessage}`;
+  }
+
+</script>
+</body>
+</html>

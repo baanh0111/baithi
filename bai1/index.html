@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let arr = [];
+
+    // Hàm thêm phần tử vào mảng
+    function add(index) {
+        if (arr.length >= 50) {
+            document.write("Mảng đã đủ 50 phần tử!<br>");
+            return;
+        }
+        arr.push(index);
+        document.write(`Đã thêm ${index} vào mảng.<br>`);
+    }
+
+    // Hàm hiển thị mảng
+    function display() {
+        if (arr.length === 0) {
+            document.write("Mảng hiện tại rỗng.<br>");
+        } else {
+            document.write("Mảng hiện tại: " + arr.join(", ") + "<br>");
+        }
+    }
+
+    // Hàm tính trung bình cộng các số chia hết cho 3
+    function trungBinhCongChiaHetCho3() {
+        let chiaHetCho3 = arr.filter(num => num % 3 === 0);
+        if (chiaHetCho3.length === 0) {
+            document.write("Không có số nào chia hết cho 3<br>");
+            return;
+        }
+
+        let tong = chiaHetCho3.reduce((sum, num) => sum + num, 0);
+        let trungBinh = tong / chiaHetCho3.length;
+        document.write("Trung bình cộng các số chia hết cho 3 là: " + trungBinh + "<br>");
+    }
+
+    // Thêm các phần tử vào mảng và thực hiện các thao tác
+    add(1);
+    add(3);
+    add(6);
+    add(9);
+    add(8);
+    add(12);
+    display();
+    trungBinhCongChiaHetCho3();
+
+
+</script>
+</html>
